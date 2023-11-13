@@ -1,7 +1,6 @@
-import { MongoClient } from "mongodb";
-
 // /api/new-meetup
 // POST /api/new-meetup
+import { connectDatabase } from "../../helpers/db-utils";
 
 async function handler(req, res) {
   if (req.method === "POST") {

@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import Head from "next/head";
-import { MongoClient } from "mongodb";
 
 import MeetupList from "../components/meetups/MeetupList";
 import { connectDatabase } from "../helpers/db-utils";
@@ -22,14 +21,8 @@ function HomePage(props) {
 
 export async function getStaticProps() {
   // fetch data from an API
-  let client;
-
-  try {
-    client = await connectDatabase();
-  } catch (error) {
-    res.status(500).json({ message: "Connecting to the database failed!" });
-    return;
-  }
+  let client = await connectDatabase();
+  
   const db = client.db();
 
   const meetupsCollection = db.collection("meetups");

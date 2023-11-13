@@ -1,8 +1,9 @@
-import { MongoClient, ObjectId } from "mongodb";
+import { ObjectId } from "mongodb";
 import { Fragment } from "react";
 import Head from "next/head";
 
 import MeetupDetail from "../../components/meetups/MeetupDetail";
+import { connectDatabase } from "../../helpers/db-utils";
 
 function MeetupDetails(props) {
   return (
@@ -22,14 +23,7 @@ function MeetupDetails(props) {
 }
 
 export async function getStaticPaths() {
-  let client;
-
-  try {
-    client = await connectDatabase();
-  } catch (error) {
-    res.status(500).json({ message: "Connecting to the database failed!" });
-    return;
-  }
+  let client = await connectDatabase();
 
   const db = client.db();
 
@@ -52,14 +46,7 @@ export async function getStaticProps(context) {
 
   const meetupId = context.params.meetupId;
 
-  let client;
-
-  try {
-    client = await connectDatabase();
-  } catch (error) {
-    res.status(500).json({ message: "Connecting to the database failed!" });
-    return;
-  }
+  let client = await connectDatabase();
 
   const db = client.db();
 
