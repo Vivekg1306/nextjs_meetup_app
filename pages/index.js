@@ -8,7 +8,7 @@ function HomePage(props) {
   return (
     <Fragment>
       <Head>
-        <title>React Meetups</title>
+        <title>Nextjs Meetups</title>
         <meta
           name="description"
           content="Browse a huge list of highly active React meetups!"
@@ -22,7 +22,7 @@ function HomePage(props) {
 export async function getStaticProps() {
   // fetch data from an API
   let client = await connectDatabase();
-  
+
   const db = client.db();
 
   const meetupsCollection = db.collection("meetups");
